@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume Evaluator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+<header>
+  <div class="header-content">
+    <h1>Resume Evaluator</h1>
+    <nav>
+      <a href="#">Login</a>
+      <a href="#">Register</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="form-panel">
+    <form id="evaluator-form">
+      
+      <!-- حقل الوصف الوظيفي -->
+      <div class="input-group">
+        <label for="job-description">Job Description</label>
+        <textarea id="job-description" placeholder="Paste the job description here..."></textarea>
+      </div>
+
+      <!-- حقل التوجيه المخصص (البرومبت) -->
+      <div class="input-group">
+        <label for="custom-prompt">Custom Prompt (Optional)</label>
+        <textarea id="custom-prompt" placeholder="e.g., Focus on technical skills..."></textarea>
+      </div>
+
+      <!-- حقل رفع ملف السيرة الذاتية PDF فقط -->
+      <div class="input-group">
+        <label for="resume-file">Upload PDF Resume</label>
+        <input type="file" id="resume-file" accept=".pdf" />
+      </div>
+
+      <!-- زر الإرسال -->
+      <button type="submit">Evaluate</button>
+    </form>
+  </section>
+
+  <!-- الجزء الأيمن: منطقة عرض النتائج -->
+  <section class="results-panel">
+    <h2>Evaluation Results</h2>
+    <div id="results-area">
+      <p class="placeholder-text">Results will appear here...</p>
+    </div>
+  </section>
+</main>
+ <script src="script.js"></script>
+  </body>
+</html>
