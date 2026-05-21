@@ -1,11 +1,13 @@
 :root {
   --primary: #4f46e5;
   --primary-hover: #4338ca;
-  --bg-page: #f5f7fa;
+  --primary-light: rgba(79, 70, 229, 0.1);
+  --bg-page: #f8fafc;
   --bg-card: #ffffff;
-  --text-dark: #1a1a2e;
-  --text-muted: #6b7280;
-  --border-color: #e5e7eb;
+  --text-dark: #0f172a;
+  --text-muted: #64748b;
+  --border-color: #cbd5e1;
+  --border-hover: #94a3b8;
 }
 
 * {
@@ -15,17 +17,18 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background-color: var(--bg-page);
   color: var(--text-dark);
-  line-height: 1.6;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
 header {
-  background-color: #111827;
-  color: white;
-  padding: 16px 24px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #0f172a;
+  color: #ffffff;
+  padding: 20px 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .header-content {
@@ -37,106 +40,134 @@ header {
 }
 
 header h1 {
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
 }
 
 header nav a {
-  color: #9ca3af;
+  color: #94a3b8;
   text-decoration: none;
-  margin-left: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 24px;
   transition: color 0.2s ease;
 }
 
 header nav a:hover {
-  color: white;
+  color: #ffffff;
 }
 
 main {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  gap: 32px;
   max-width: 1200px;
-  margin: 40px auto;
+  margin: 48px auto;
   padding: 0 24px;
 }
 
 .form-panel, .results-panel {
   background-color: var(--bg-card);
-  padding: 32px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  padding: 40px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
 }
 
 .results-panel h2 {
-  margin-bottom: 20px;
-  font-size: 20px;
-  border-bottom: 2px solid var(--bg-page);
-  padding-bottom: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: var(--text-dark);
 }
 
 .placeholder-text {
   color: var(--text-muted);
   font-style: italic;
+  font-size: 14px;
 }
 
 .input-group {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .input-group label {
   display: block;
   margin-bottom: 8px;
-  font-weight: 500;
-  font-size: 14px;
+  font-weight: 600;
+  font-size: 13px;
+  color: #334155;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 textarea, input[type="file"] {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: 8px;
   font-family: inherit;
   font-size: 14px;
-  background-color: #f9fafb;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  color: var(--text-dark);
+  background-color: #ffffff;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 textarea {
-  min-height: 120px;
+  min-height: 140px;
   resize: vertical;
+}
+
+textarea:hover {
+  border-color: var(--border-hover);
 }
 
 textarea:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+  box-shadow: 0 0 0 4px var(--primary-light);
   outline: none;
+}
+
+input[type="file"] {
+  background-color: #f8fafc;
+  cursor: pointer;
+}
+
+input[type="file"]:hover {
+  border-color: var(--border-hover);
 }
 
 button[type="submit"] {
   width: 100%;
   background-color: var(--primary);
-  color: white;
+  color: #ffffff;
   padding: 14px;
   border: none;
-  border-radius: 6px;
-  font-size: 16px;
+  border-radius: 8px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 button[type="submit"]:hover {
   background-color: var(--primary-hover);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.1);
 }
 
 button[type="submit"]:active {
-  transform: scale(0.98);
+  transform: scale(0.99);
 }
 
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   main {
     grid-template-columns: 1fr;
-    margin: 20px auto;
+    gap: 24px;
+    margin: 24px auto;
+  }
+  .form-panel, .results-panel {
+    padding: 24px;
   }
 }
