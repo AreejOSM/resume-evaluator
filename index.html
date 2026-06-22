@@ -1,68 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Resume Evaluator</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>resume-evaluator</title>
   </head>
   <body>
-
-    <header>
-      <div class="header-content">
-        <h1>Resume Evaluator</h1>
-        <nav>
-          <a href="#">Login</a>
-          <a href="#">Register</a>
-        </nav>
-      </div>
-    </header>
-
-    <main>
-      <section class="form-panel">
-        <form id="evaluator-form">
-          <div class="input-group">
-            <label for="job-description">Job Description</label>
-            <textarea id="job-description" placeholder="Paste the job description here..."></textarea>
-          </div>
-
-          <div class="input-group">
-            <label for="custom-prompt">Custom Prompt (Optional)</label>
-            <textarea id="custom-prompt" placeholder="e.g., Focus on technical skills..."></textarea>
-          </div>
-
-          <div class="input-group">
-            <label for="resume-file">Upload PDF Resume</label>
-            <input type="file" id="resume-file" accept=".pdf" />
-          </div>
-
-          <button type="submit">Evaluate Resume</button>
-        </form>
-      </section>
-
-      <section class="results-panel">
-        <h2>Evaluation Results</h2>
-        <div id="results-area">
-          
-          <div class="interactive-placeholder">
-            <div class="ai-scanner-visual">
-              <div class="laser-line"></div>
-              <div class="doc-mockup">
-                <div class="line short"></div>
-                <div class="line long"></div>
-                <div class="line medium"></div>
-                <div class="line long"></div>
-              </div>
-              <div class="glow-orb"></div>
-            </div>
-            <h3>Ready for AI Evaluation</h3>
-            <p>Upload your resume and press evaluate to watch the AI parsing engine extract and analyze your skills live.</p>
-          </div>
-
-        </div>
-      </section>
-    </main>
-
-    <script src="script.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
