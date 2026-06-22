@@ -8,29 +8,59 @@ form.addEventListener("submit", function (event) {
   event.preventDefault();
 
   const jobDescriptionValue = jobDescriptionInput.value.trim();
-  const customPromptValue = customPromptInput.value.trim();
   
   if (!jobDescriptionValue) {
-    resultsArea.innerHTML = '<p style="color: #dc2626; font-weight: 500;">Please enter a job description.</p>';
+    resultsArea.innerHTML = `
+      <div class="vibrant-alert error-alert">
+        <div class="alert-icon">⚠️</div>
+        <div class="alert-text">
+          <h4>Action Required</h4>
+          <p>Please enter a job description to guide the AI.</p>
+        </div>
+      </div>
+    `;
     return;
   }
 
   if (resumeFileInput.files.length === 0) {
-    resultsArea.innerHTML = '<p style="color: #dc2626; font-weight: 500;">Please upload a PDF resume.</p>';
+    resultsArea.innerHTML = `
+      <div class="vibrant-alert error-alert">
+        <div class="alert-icon">📁</div>
+        <div class="alert-text">
+          <h4>Missing Document</h4>
+          <p>Please upload a PDF resume for evaluation.</p>
+        </div>
+      </div>
+    `;
     return;
   }
 
   const fileName = resumeFileInput.files[0].name;
 
+  // كارت النجاح الملون والتفاعلي  
   resultsArea.innerHTML = `
-    <div style="background-color: #f0fdf4; border-left: 4px solid #16a34a; padding: 16px; border-radius: 4px;">
-      <h3 style="color: #16a34a; margin-bottom: 8px;">Analysis Started</h3>
-      <p style="color: #166534; font-size: 14px;">
-        Evaluating <strong>${fileName}</strong> against the job description...
+    <div class="vibrant-success-card">
+      <div class="success-glow"></div>
+      <div class="card-header-vibrant">
+        <div class="pulse-ring">
+          <div class="inner-dot"></div>
+        </div>
+        <h3>Analysis Initiated Successfully</h3>
+      </div>
+      
+      <div class="file-info-box">
+        <span class="file-icon">📄</span>
+        <div class="file-details">
+          <span class="file-name">${fileName}</span>
+          <span class="file-type">Ready for ChatGPT Parsing</span>
+        </div>
+      </div>
+
+      <p class="processing-text">
+        Engaging Neural Network Engine to evaluate experience metrics against the target job profile...
       </p>
-      <p style="color: #6b7280; font-size: 12px; margin-top: 8px; font-style: italic;">
-        (ChatGPT integration coming in Stage 5)
-      </p>
+
+      <div class="vibrant-badge">Stage 5 ChatGPT Pipeline Pending</div>
     </div>
   `;
 });
