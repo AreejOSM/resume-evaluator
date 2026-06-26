@@ -1,7 +1,6 @@
 import useEvaluator from '../hooks/useEvaluator';
 
 function EvaluatorPage() {
-  // استدعاء وتفكيك البيانات والمنطق مباشرة من الـ Custom Hook
   const {
     jobDescription,
     setJobDescription,
@@ -16,8 +15,7 @@ function EvaluatorPage() {
   } = useEvaluator();
 
   return (
-    <main>
-      {/* العمود الأول: لوحة إدخال البيانات (Form) */}
+    <main className="evaluator-main"> 
       <section className="form-panel">
         <form id="evaluator-form" onSubmit={handleSubmit}>
           
@@ -51,7 +49,6 @@ function EvaluatorPage() {
             />
           </div>
 
-          {/* تعطيل الزر أثناء التحميل لمنع الإرسال المتكرر */}
           <button type="submit" disabled={status === 'loading'}>
             {status === 'loading' ? 'Evaluating...' : 'Evaluate Resume'}
           </button>
@@ -123,7 +120,18 @@ function EvaluatorPage() {
                 </div>
               </div>
 
-              <p className="processing-text">{result}</p>
+              <div className="processing-text" style={{ whiteSpace: 'pre-wrap', textAlign: 'left' }}>
+                {typeof result === 'object' ? (
+                  <>
+                    <div style={{ fontSize: '24px', fontWeight: 'bold', color: 'var(--accent-neon)', marginBottom: '12px' }}>
+                      Score: {result.score}%
+                    </div>
+                    <div style={{ lineHeight: '1.6', color: '#cbd5e1' }}>{result.summary}</div>
+                  </>
+                ) : (
+                  result
+                )}
+              </div>
               <div className="vibrant-badge">Stage 5 Pipeline Secured</div>
             </div>
           )}

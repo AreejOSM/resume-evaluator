@@ -1,15 +1,16 @@
-from fastapi import APIRouter, Depends
-from schemas import EvaluateRequest, EvaluateResponse
-import auth_utils
+from fastapi import APIRouter, Depends, UploadFile, File, Form
+from schemas import EvaluateResponse
+# استيراد auth_utils إذا كنتِ ستعيدين تفعيل المصادقة لاحقاً
 
 router = APIRouter()
 
-
-@router.post("/evaluate", response_model=EvaluateResponse)
-def evaluate_resume(
-    request: EvaluateRequest, 
-    current_user: str = Depends(auth_utils.get_current_user)
+@router.post("/", response_model=EvaluateResponse)
+async def evaluate_resume(
+    job_description: str = Form(...),
+    prompt: str = Form(""),
+    file: UploadFile = File(...)
 ):
+    
     return EvaluateResponse(
-        result=f"Evaluation requested by {current_user}. ChatGPT integration coming in Stage 5!"
+        result="File received successfully! Integration ready."
     )

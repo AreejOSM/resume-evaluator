@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 
 function useEvaluator() {
   const [jobDescription, setJobDescription] = useState('');
@@ -8,7 +9,7 @@ function useEvaluator() {
   const [errorMessage, setErrorMessage] = useState('');
   const [result, setResult] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage('');
     setResult('');
@@ -27,13 +28,33 @@ function useEvaluator() {
 
     setStatus('loading');
 
-    setTimeout(() => {
+    
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('job_description', jobDescription);
+    formData.append('custom_prompt', customPrompt);
+
+    try {
+      
+      const response = await axios.post('http://localhost:8000/evaluate/', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
       setStatus('success');
-      setResult(`Evaluating "${file.name}" against the job profile... ChatGPT integration coming in Stage 5!`);
-    }, 1500);
+      
+      
+      setResult(response.data.result || response.data);
+
+    } catch (err) {
+      setStatus('error');
+     
+      const msg = err.response?.data?.detail || 'Failed to connect to the evaluation server.';
+      setErrorMessage(msg);
+    }
   };
 
-  
   return {
     jobDescription,
     setJobDescription,
